@@ -34,7 +34,7 @@ vector<int> permutacio (const vector<int>& v, int x) {
 	return v;
 }
 
-void jaccard(const set<string>& s1, const set<string>& s2) {
+/*void jaccard(const set<string>& s1, const set<string>& s2) {
 	int typeX = 0, ty = 0;
 	//cout << "Similitudes: " << endl;
 	set<string>::iterator it1;
@@ -49,15 +49,15 @@ void jaccard(const set<string>& s1, const set<string>& s2) {
 		unio += it->second;
 	}
 	cout << "Similitud de Jaccard: " << double(inter)/unio << endl;
-}
+}*/
 
-void sortida(const vector<set <string> >& si) {
+/*void sortida(const vector<set <string> >& si) {
 	for (auto i : si) {
 		for (auto j 1 : si) {
 			jaccard(si[i], si[j]);
 		}
 	}
-}
+}*/
 
 
 /* Retorna h(S)
@@ -70,6 +70,17 @@ string minHash(set<string> S, map<int, string>& univ_hash, vector<int>& rows) {
 			return aux;
 		}
 	}
+}*/
+
+/*int jaccard(const vector<vector <int>>& v) {
+	int nSims= 0;
+	for (int i = 0; i < v.size(); ++i) {
+		for (int j = 1; j < v[i].size(); ++j) {
+			if (v[i][1] == v[i][j])
+				++nSims;
+		}
+	}
+	return nSims/v.size();
 }*/
 
 int main() {
@@ -115,21 +126,19 @@ int main() {
 	// L'utilitzarem per anar fent permutacions
 	int nrows = univ_hash.size(); // IMPORTANT = El nombre de permutacions es (ara per ara) el nombre de shingles
 	int columns = sets.size(); // El nombre de sets que tenim
-	vector<vector<int> > result(nrows, INF);
+	vector<vector<int> > signatures(nrows, vector<int>(columns, INF));
 	for (int i = 0; i < nrows; ++i) {
-		string sh = univ_hash.find(i);
+		string sh = univ_hash[i];
 		int hi = (i + 1) % nrows;
 		for (int j = 0; j < columns; ++j) {
 			if (sets[j].find(sh) != sets[j].end()) {
 				// A la M hi ha un 1
 				for (int l = 0; l <= i; ++l) {
-					if (result[l][j] > hi)
-						result[l][j] = hi;
+					if (signatures[l][j] > hi)
+						signatures[l][j] = hi;
 				}
 			}
 		}
 	}
-		// rows[i] = i;
-		
-	sortida(signatures);
+	cout << jaccard(signatures) << endl;
 }

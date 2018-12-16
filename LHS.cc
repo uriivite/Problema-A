@@ -37,9 +37,8 @@ void print_hash(map<int, string>& m) {
 void jSeter(int k, string x, set<string>& s) {
     for(int i = 0; i <= x.size()-k; ++i) {
         string aux = "";
-        for(int j = i; j < i+k; ++j) {
+        for(int j = i; j < i+k; ++j)
             aux.insert(aux.end(),x[j]);
-        }
         s.insert(aux);
     }
 }
@@ -84,22 +83,18 @@ void init_signatures(vector<vector<int> >& v) {
 }
 
 int main() {
-  cout << "Tria el nombre de documents: ";
-  int n; cin >> n;
   cout << "K: "; int k; cin >> k;
   cout << "Insereix els documents:" << endl;
   map<int, set<string> > D;
   set<string> universal;
-  for (int i = 0; i < n; ++i) {
-    string doc;
-    cout << "Peta aqui" << endl;
-    getline(cin, doc);
+  string doc;
+  int i = 0;
+  while (getline(cin, doc)) {
     set<string> sD;
     jSeter(k, doc, sD);
-    cout << "Ara peta" << endl;
     universal = jUnion(universal, sD);
-    cout << "Has falat jeje" << endl;
     D[i] = sD;
+    ++i;
   }
   map<int, string> univ_hash = hash_shingles(universal);
   vector<vector<int> > signatures(univ_hash.size(), vector<int>(D.size()));

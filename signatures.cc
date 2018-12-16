@@ -19,6 +19,19 @@ void imprimir_signatures(vector<vector<int> >& v) {
   }
 }
 
+void printSet(set<string>& s) {
+  for (auto c : s)
+    cout << c << endl;
+}
+
+void print_hash(map<int, string>& m) {
+  for (int i = 0; i < m.size(); ++i) {
+    cout << i << ": " << m[i] << endl;
+  }
+}
+
+///////////////////////////////////////////////////////////////////77
+
 void jSeter(int k, string x, set<string>& s) {
     for(int i = 0; i <= x.size()-k; ++i) {
         string aux = "";
@@ -80,18 +93,20 @@ int main() {
   map<int, string> univ_hash = hash_shingles(universal);
   vector<set<string> > sets(2);
   sets[0] = mA; sets[1] = mB;
-  vector<vector<int> > signatures(100, vector<int>(sets.size())); // 100 permutacions
-                                                        // tantes columnes com dels textos tinguem
+  vector<vector<int> > signatures(univ_hash.size(), vector<int>(sets.size()));
   init_signatures(signatures);
 	for (int r = 0; r < univ_hash.size(); ++r) {
 		for (int c = 0; c < sets.size(); ++c) {
-			if (set_conte_shingle(r, univ_hash, sets[c]))
-				for (int h = 0; h < 100; ++h) {
+			if (set_conte_shingle(r, univ_hash, sets[c])) {
+        srand(univ_hash.size());
+				for (int h = 0; h < univ_hash.size(); ++h) {
 					int hi = ((rand()%10)*r + 1)%univ_hash.size();
 					if (signatures[h][c] > hi)
 						signatures[h][c] = hi;
 				}
+      }
 		}
 	}
+  imprimir_signatures(signatures);
   cout << jaccard(signatures) << endl;
 }

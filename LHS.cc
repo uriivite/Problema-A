@@ -83,13 +83,17 @@ void init_signatures(vector<vector<int> >& v) {
 }
 
 int main() {
+  cin >> n;
+
   cout << "K: "; int k; cin >> k;
   cout << "Insereix els documents:" << endl;
   map<int, set<string> > D;
   set<string> universal;
   string doc;
   int i = 0;
-  while (getline(cin, doc)) {
+  while (i < n) {
+    cin.get();
+    getline(cin, doc)
     set<string> sD;
     jSeter(k, doc, sD);
     universal = jUnion(universal, sD);

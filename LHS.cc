@@ -23,7 +23,7 @@ void imprimir_signatures(vector<vector<int> >& v) {
 
 void printSet(set<string>& s) {
   for (auto c : s)
-    cout << c << endl;
+    cout << c << " ";
 }
 
 void print_hash(map<int, string>& m) {
@@ -83,19 +83,21 @@ void init_signatures(vector<vector<int> >& v) {
 }
 
 int main() {
-  cin >> n;
-
+  int n; cin >> n;
   cout << "K: "; int k; cin >> k;
   cout << "Insereix els documents:" << endl;
   map<int, set<string> > D;
   set<string> universal;
-  string doc;
+  string saux;
+  getline(cin, saux);
   int i = 0;
   while (i < n) {
-    cin.get();
-    getline(cin, doc)
+    string doc;
+    getline(cin, doc);
     set<string> sD;
     jSeter(k, doc, sD);
+    cout << "S" << i << ": ";
+    printSet(sD); cout << endl;
     universal = jUnion(universal, sD);
     D[i] = sD;
     ++i;
@@ -116,5 +118,5 @@ int main() {
 		}
 	}
   imprimir_signatures(signatures);
-  cout << jaccard(signatures) << endl;
+//  cout << jaccard(signatures) << endl;
 }

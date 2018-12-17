@@ -6,16 +6,14 @@
 using namespace std;
 
 int main() {
-	map<string,int> mA, mB;
 	cout << "Introducir textos a comparar:" << endl;
 	string A, B;
 	getline(cin, A);
 	getline(cin, B);
-	cout << "\nTexto 1: " << A << "\n\nTexto 2: " << B << endl;
 	int k;
 	cout << "\nK: ";
 	cin >> k;
-	cout << k << endl;
+	map<string,int> mA, mB;
 	for(int i = 0; i < A.size()-k; ++i) {
 		string aux = "";
 		for(int j = i; j < i+k; ++j) {
@@ -44,7 +42,4 @@ int main() {
 		unio += it->second;
 	}
 	cout << "Similitud de Jaccard: " << double(inter)/unio << endl;
-	
-	
 }
-	

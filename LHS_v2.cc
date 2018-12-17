@@ -135,8 +135,8 @@ int main() {
               if(similars.find(make_pair(j, m)) == similars.end()) {
                   vector < vector <int> > aux(r,vector<int>(2));
                   for(int l = i*r; l < (i*r)+r; l++) {
-                      aux[l%r][0] = signatures[l][j];
-                      aux[l%r][1] = signatures[l][m];
+                      aux[l%r][0] = signatures[l%r][j];
+                      aux[l%r][1] = signatures[l%r][m];
                   }
                   if(jaccard(aux) >= t){
                       similars.insert(make_pair(j,m));

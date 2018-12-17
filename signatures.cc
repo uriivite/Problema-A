@@ -9,6 +9,8 @@ using namespace std;
 
 #define INF 1000
 
+//////////////////////////////////////////////////////
+
 void imprimir_signatures(vector<vector<int> >& v) {
   for (int i = 0; i < v.size(); ++i){
     cout << "h" << i << ":	";
@@ -107,6 +109,7 @@ int main() {
       }
 		}
 	}
+  cout << "Taula de signatures:" << endl;
   imprimir_signatures(signatures);
   cout << jaccard(signatures) << endl;
 }

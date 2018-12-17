@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo jaccard
+echo Compilació i execució de jaccard
 
 make jaccard
-./jaccard < fitxer.txt
+./jaccard < fitxer_jaccard.txt
